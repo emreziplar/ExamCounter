@@ -101,7 +101,7 @@ public class AddExamFrame extends javax.swing.JFrame {
    
     
     private void addExamButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addExamButtonActionPerformed
-        String examName = examNameField.getText();
+        String examName = examNameField.getText().trim();
         String date = ((JTextField)dateChooser.getDateEditor()).getText().trim();                
       
         if(isExamName()) 
@@ -124,9 +124,11 @@ public class AddExamFrame extends javax.swing.JFrame {
         dataList = dbOperations.getData();
         
         if(dataList != null)
-            for(Data c:dataList)
+            for(Data c:dataList) 
+            {
                 if(c.getExamName().equals(examNameField.getText()))
                     return false;
+            }
         
         return true;
     }

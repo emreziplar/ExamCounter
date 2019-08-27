@@ -1,10 +1,12 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,9 +15,10 @@ public class DatabaseOperations
 {
     Connection conn = null;
     Statement statement = null;
+    PreparedStatement preStatement = null;
     
     private String filePath = "C:/sqlite/";
-    private String dbFileName = "dates";
+    private String dbFileName = "exams";
     private String extension = ".db";
     
     
@@ -32,7 +35,7 @@ public class DatabaseOperations
         
         try {
             conn = DriverManager.getConnection(url);     
-            System.out.println("Connection Successful");
+            //System.out.println("Connection Successful");
         } catch (SQLException ex) {
             ex.getMessage();
         }
@@ -40,7 +43,7 @@ public class DatabaseOperations
     }
     
     public void createTable() {
-        String query = "CREATE TABLE IF NOT EXISTS 'data'('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'examName' TEXT,'examDate' TEXT)";
+        String query = "CREATE TABLE IF NOT EXISTS 'exams'('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'examName' TEXT,'examDate' TEXT)";
         
         try {
             statement = conn.createStatement();
@@ -52,7 +55,7 @@ public class DatabaseOperations
      
     public void addData(String examName , String date) {
        
-        String query = "INSERT INTO 'data'(examName,examDate) VALUES('"+examName+"','"+date+"')"; //('examName','date')       
+        String query = "INSERT INTO 'exams'(examName,examDate) VALUES('"+examName+"','"+date+"')"; //('examName','date')       
         
         try {
             statement =  conn.createStatement();
@@ -66,7 +69,7 @@ public class DatabaseOperations
       
     public ArrayList<Data> getData() {
         
-        String query = "SELECT * FROM data";
+        String query = "SELECT * FROM exams";
         ArrayList<Data> dataList = new ArrayList<>();
         
         try {
@@ -86,7 +89,45 @@ public class DatabaseOperations
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseOperations.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+        }   
+        
+    }
+    
+    
+    public void deleteData(String examName)
+    {
+        String query = "DELETE FROM 'exams' where examName = ?";
+        
+        try {
+            
+            preStatement = conn.prepareStatement(query);
+            preStatement.setString(1, examName);
+            preStatement.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+          
+    
+    public void updateData(String examName , String examDate,String currentExamName)
+    {
+        String query = "UPDATE 'exams' SET examName = ? , examDate = ? where examName = ?";
        
+        try {
+            
+            preStatement = conn.prepareStatement(query);
+            
+            preStatement.setString(1, examName);
+            preStatement.setString(2, examDate);
+            preStatement.setString(3, currentExamName);
+            
+            preStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public static void main(String[] args) {
+        DatabaseOperations dbOperations = new DatabaseOperations();
     }
 }

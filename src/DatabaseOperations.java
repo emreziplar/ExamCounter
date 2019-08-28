@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -126,8 +125,5 @@ public class DatabaseOperations
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    public static void main(String[] args) {
-        DatabaseOperations dbOperations = new DatabaseOperations();
     }
 }

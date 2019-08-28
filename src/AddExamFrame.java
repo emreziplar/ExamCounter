@@ -200,6 +200,7 @@ public class AddExamFrame extends javax.swing.JFrame {
     private void seeRemainingDaysButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeRemainingDaysButtonActionPerformed
        try{
         setVisible(false);
+        dbOperations.createTable();
         RemainingDaysFrame remainingDaysFrame = new RemainingDaysFrame();
         remainingDaysFrame.setVisible(true);
        }

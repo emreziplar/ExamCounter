@@ -69,7 +69,7 @@ public class RemainingDaysFrame extends javax.swing.JFrame{
             if(d.getDayDiff()>0)  
             {
                 Object[] rowData = {d.getExamName(),d.getExamDate(),d.getDayDiff()+" Day"};
-                model.addRow(rowData);
+                model.addRow(rowData); //added to table
             }
             else //if day diff is less from 0 
                dbOperations.deleteData(d.getExamName()); 
@@ -302,7 +302,7 @@ public class RemainingDaysFrame extends javax.swing.JFrame{
 
        
     
-    private int selectedRow;
+    private int selectedRow; //on informationsTable
     
     private void informationsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_informationsTableMouseClicked
         sendInformationsToField();
@@ -358,7 +358,7 @@ public class RemainingDaysFrame extends javax.swing.JFrame{
     }
     
     private boolean areFieldsEmpty() {
-        return !(!examNameField.getText().equals("") && !((JTextField)dateChooser.getDateEditor()).getText().equals(""));
+        return !(!examNameField.getText().equals("") && !((JTextField)dateChooser.getDateEditor()).getText().equals(""));       
     }
             
     private void cleaning() {

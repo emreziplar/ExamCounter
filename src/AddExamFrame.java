@@ -138,21 +138,33 @@ public class AddExamFrame extends javax.swing.JFrame {
    
     
     private void addExamButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addExamButtonActionPerformed
-        String examName = examNameField.getText().trim();
-        String date = ((JTextField)dateChooser.getDateEditor()).getText().trim();                
-      
-        if(!isExamName()) 
-        {
-            if(!examName.equals("") && !date.equals(""))
+        
+            String examName = examNameField.getText().trim();
+            String date = ((JTextField)dateChooser.getDateEditor()).getText().trim();                
+            
+            try {
+            if(!isExamName()) 
             {
-                dbOperations.addData(examName, date);  
-                showJOptionPane();          
+                if(!examName.equals("") && !date.equals(""))
+                {
+                    dbOperations.createTable();
+                    dbOperations.addData(examName, date);                                       
+                    showJOptionPane();          
+                }
+                else 
+                    JOptionPane.showMessageDialog(this, "Fields can't be empty");      
             }
             else 
-                JOptionPane.showMessageDialog(this, "Fields can't be empty");      
-        }
-        else 
-            JOptionPane.showMessageDialog(this, "This exam already exists");
+                JOptionPane.showMessageDialog(this, "This exam already exists");
+            }
+            catch(NullPointerException ex) {                
+                JOptionPane.showMessageDialog(this, "File named 'sqlite' not found on disk C");
+                System.exit(0);
+            }
+                     
+        
+        
+            
     }//GEN-LAST:event_addExamButtonActionPerformed
 
     private boolean isExamName()
@@ -186,9 +198,15 @@ public class AddExamFrame extends javax.swing.JFrame {
     }
     
     private void seeRemainingDaysButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeRemainingDaysButtonActionPerformed
+       try{
         setVisible(false);
         RemainingDaysFrame remainingDaysFrame = new RemainingDaysFrame();
         remainingDaysFrame.setVisible(true);
+       }
+       catch(NullPointerException ex) {
+           JOptionPane.showMessageDialog(this, "File named 'sqlite' not found on disk C");
+           System.exit(0);
+       }      
     }//GEN-LAST:event_seeRemainingDaysButtonActionPerformed
 
     

@@ -126,4 +126,8 @@ public class DatabaseOperations
             Logger.getLogger(DatabaseOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static void main(String[] args) {
+        DatabaseOperations databaseOperations = new DatabaseOperations();
+    }
 }

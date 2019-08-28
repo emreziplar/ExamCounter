@@ -377,8 +377,8 @@ public class RemainingDaysFrame extends javax.swing.JFrame{
         else 
         {
             if(!areFieldsEmpty()) {
-                String examName = examNameField.getText();
-                String examDate = ((JTextField)dateChooser.getDateEditor()).getText();
+                String examName = examNameField.getText().trim();
+                String examDate = ((JTextField)dateChooser.getDateEditor()).getText().trim();
                 
                 dbOperations.updateData(examName, examDate, informationsTable.getValueAt(selectedRow, 0).toString());
                                                                     //currentExamName

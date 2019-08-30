@@ -20,12 +20,11 @@ Exam Counter is a Form application made using java swing and sqlite,it shows day
 
       git clone https://github.com/emreziplar/ExamCounter.git
 
-- Create a file named "sqlite" on disk C.
 - Open the project on Netbeans.
 
 or
 
-- Download and run [here](https://github.com/emreziplar/ExamCounter/blob/master/dist/project.rar?raw=true).
+- Download and run [here](https://github.com/emreziplar/ExamCounter/blob/master/ExamCounter.rar?raw=true).
 
 # Note
 

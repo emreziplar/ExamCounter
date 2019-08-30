@@ -25,7 +25,7 @@ Exam Counter is a Form application made using java swing and sqlite,it shows day
 
 or
 
-- Download and run [here](https://github.com/emreziplar/trial/blob/master/dist/project.rar?raw=true).
+- Download and run [here](https://github.com/emreziplar/ExamCounter/blob/master/dist/project.rar?raw=true).
 
 # Note
 

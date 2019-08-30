@@ -1,4 +1,6 @@
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 public class DatabaseOperations 
@@ -20,9 +23,12 @@ public class DatabaseOperations
     private String dbFileName = "exams";
     private String extension = ".db";
     
-    
-    
     public DatabaseOperations() {
+      
+        File file = new File("C:\\sqlite");        
+        if (!file.exists()) 
+            file.mkdir();             
+            
         
         String url = "jdbc:sqlite://" + filePath + dbFileName + extension;
         
